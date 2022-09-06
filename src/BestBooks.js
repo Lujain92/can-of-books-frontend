@@ -40,6 +40,44 @@ class BestBooks extends React.Component {
       showModal:false
     })
   }
+  handleSubmit=(event)=>{
+    event.preventDefault()
+    
+    const obj={
+        title :event.target.title.value,
+        description :event.target.description.value,
+        status: event.target.status.value
+    }
+    //console.log(obj.title)
+
+    axios
+    .post(`http://localhost:3001/books`, obj)
+    .then(result =>{
+      this.setState({
+        books: result.data
+      })
+     })
+     .catch(err=>{
+       console.log(err);
+     })
+     this.handleClose()
+ }
+
+ deleteBook=(id)=>{
+  axios
+  .delete(`http://localhost:3001/books/${id}`)
+  .then(result=>{
+    this.setState({
+      books :result.data
+    })
+
+  })
+  .catch(err=>{
+    console.log(err)})
+  
+
+ }
+
   render() {
 
     /* TODO: render all the books in a Carousel */
@@ -48,7 +86,7 @@ class BestBooks extends React.Component {
       <>
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
         <button onClick={this.addBook}>Add new book</button>
-        <FormModal showModal={this.state.showModal} handleClose={this.state.handleClose} />
+        <FormModal showModal={this.state.showModal} handleClose={this.handleClose} handleSubmit={this.handleSubmit}/>
 
 
         {this.state.books.length > 0 ? (
@@ -65,18 +103,22 @@ class BestBooks extends React.Component {
                   <Carousel.Caption>
                     <h3> title {item.title}</h3>
                     <p>description: {item.description}</p>
+                    <p>status : {item.status}</p>
+                    <button onClick={this.deleteBook}> delete book </button>
+                  
                   </Carousel.Caption>
                 </Carousel.Item>
 
               )
             }
-            )}
+
+            ) }
 
 
           </Carousel>
         ) : (
           <h3>the book collection is empty.</h3>
-        )}
+        ) }
 
 
 
