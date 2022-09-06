@@ -17,7 +17,7 @@ class BestBooks extends React.Component {
   /* TODO: Make a GET request to your API to fetch all the books from the database  */
   componentDidMount = () => {
     axios
-      .get("http://localhost:3001/books")
+      .get(`${process.env.REACT_APP_URL}books`)
       .then(result => {
         console.log(result.data);
         this.setState({
@@ -54,7 +54,7 @@ class BestBooks extends React.Component {
     //console.log(obj.title)
 
     axios
-    .post(`http://localhost:3001/books`, obj)
+    .post(`${process.env.REACT_APP_URL}books`, obj)
     .then(result =>{
       this.setState({
         books: result.data
@@ -68,7 +68,7 @@ class BestBooks extends React.Component {
 
  deleteBook=(id)=>{
   axios
-  .delete(`http://localhost:3001/books/${id}`)
+  .delete(`${process.env.REACT_APP_URL}books/${id}`)
   .then(result=>{
     this.setState({
       books :result.data
@@ -105,7 +105,7 @@ this.setState({
   }
   const id=this.state.currentBook._id;
   axios
-  .put(`http://localhost:3001/books/${id}`,obj)
+  .put(`${process.env.REACT_APP_URL}books/${id}`,obj)
   .then(result=>{
     this.setState({
       books :result.data
