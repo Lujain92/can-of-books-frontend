@@ -1,4 +1,4 @@
-# Project Name
+# canned books frontend
 
 **Author**: Lujain Al-Jarrah
 **Version**: 1.0.0
@@ -28,23 +28,34 @@ React, JS
 <!-- See below -->
 **Name of feature:**  create website,  connect mongo
 
-Estimate of time needed to complete: 2h
+Estimate of time needed to complete: 1h
 
-Start time: 9:00pm
+Start time: 8:00am
 
-Finish time: 10:30pm
+Finish time: 08:45am
 
-Actual time needed to complete:1:30
+Actual time needed to complete:45min
 
-**Name of feature:** add POST, DELETE route
+**Name of feature:** add modal form to add book and delete button to delete specific book
+
+Estimate of time needed to complete: 3h
+
+Start time: 1:00pm
+
+Finish time: 4:pm
+
+Actual time needed to complete: 3h
+
+**Name of feature:** add form to update a book 
 
 Estimate of time needed to complete: 1h
 
-Start time: 7:30am
+Start time: 8:10pm
 
-Finish time: 8:20 am
+Finish time: 9:20pm
 
-Actual time needed to complete: 50 min
+Actual time needed to complete: 1:10h
+
 
 
 ## Credit and Collaborations

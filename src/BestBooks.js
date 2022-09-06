@@ -2,12 +2,15 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel'
 import axios from 'axios';
 import FormModal from './FormModal';
+import UpdateBook from './UpdateBook';
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       books: [],
-      showModal: false
+      showModal: false,
+      showUpdate:false,
+      currentBook:{}
     }
   }
 
@@ -77,7 +80,44 @@ class BestBooks extends React.Component {
   
 
  }
+ //update
+ showUpdated=(item)=>{
+this.setState({
+  showUpdate:true,
+  currentBook:item //ask about 
+})
+ }
 
+ closeUpdate=()=>{
+  this.setState({
+    showUpdate:false
+  })
+ }
+  
+
+ updateOne=(event)=>{
+  event.preventDefault()
+  let obj={
+    title: event.target.title.value,
+    description:event.target.description.value,
+    status:event.target.status.value
+  
+  }
+  const id=this.state.currentBook._id;
+  axios
+  .put(`http://localhost:3001/books/${id}`,obj)
+  .then(result=>{
+    this.setState({
+      books :result.data
+    })
+    this.closeUpdate()
+
+  })
+  .catch(err=>{
+    console.log(err)
+  })
+
+ }
   render() {
 
     /* TODO: render all the books in a Carousel */
@@ -87,6 +127,7 @@ class BestBooks extends React.Component {
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
         <button onClick={this.addBook}>Add new book</button>
         <FormModal showModal={this.state.showModal} handleClose={this.handleClose} handleSubmit={this.handleSubmit}/>
+        <UpdateBook showUpdate={this.state.showUpdate} closeUpdate={this.closeUpdate} updateOne={this.updateOne} currentBook={this.state.currentBook}/>
 
 
         {this.state.books.length > 0 ? (
@@ -105,6 +146,7 @@ class BestBooks extends React.Component {
                     <p>description: {item.description}</p>
                     <p>status : {item.status}</p>
                     <button onClick={()=>this.deleteBook(item._id)}> delete book </button>
+                    <button onClick={()=>this.showUpdated(item)}> update book </button>
                   
                   </Carousel.Caption>
                 </Carousel.Item>
