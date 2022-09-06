@@ -1,11 +1,13 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel'
 import axios from 'axios';
+import FormModal from './FormModal';
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      books: [],
+      showModal: false
     }
   }
 
@@ -22,6 +24,22 @@ class BestBooks extends React.Component {
 
       )
   }
+
+  addBook =(event)=>{
+    event.preventDefault();
+    this.setState({
+      showModal:true
+    })
+
+    
+
+  }
+
+  handleClose=()=>{
+    this.setState({
+      showModal:false
+    })
+  }
   render() {
 
     /* TODO: render all the books in a Carousel */
@@ -29,6 +47,8 @@ class BestBooks extends React.Component {
     return (
       <>
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
+        <button onClick={this.addBook}>Add new book</button>
+        <FormModal showModal={this.state.showModal} handleClose={this.state.handleClose} />
 
 
         {this.state.books.length > 0 ? (
