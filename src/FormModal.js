@@ -1,39 +1,8 @@
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
 import {Modal,Button,Form} from "react-bootstrap";
 
 class FormModal extends React.Component{
-constructor(props){
-    super(props)
-    this.state={
-        title:"",
-        description:"",
-        status:""
-
-
-    }
-
-
-}
-handleSubmit=(event)=>{
-    event.preventDefault()
-    const obj={
-        title:event.target.e.title.value,
-        description:event.target.description.value,
-        status: event.target.status.value
-    }
-
-    axios
-    .post(`http://localhost:3001/books`, obj)
-    .then(result =>{
-      this.setState({
-        books: result.data
-      })
-     })
-     .catch(err=>{
-       console.log(err);
-     })
- }
 
 
     render(){
@@ -45,7 +14,7 @@ handleSubmit=(event)=>{
         </Modal.Header>
         <Modal.Body>
 
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.props.handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Book name </Form.Label>
             <Form.Control type="text" placeholder="book name" name="title" />
@@ -61,9 +30,9 @@ handleSubmit=(event)=>{
               status
             </Form.Label>
             <Form.Select id="status">
-              <option value="life">life changing</option>
-              <option value="favorite">favorite five</option>
-              <option value="me">reccommend to me</option>
+              <option value="life changing">life changing</option>
+              <option value="favorite five">favorite five</option>
+              <option value="reccommend to me">reccommend to me</option>
             </Form.Select>
           </Form.Group>
 
