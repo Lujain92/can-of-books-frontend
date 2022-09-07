@@ -57,6 +57,15 @@ Finish time: 9:20pm
 
 Actual time needed to complete: 1:10h
 
+**Name of feature:** Authentication
+
+Estimate of time needed to complete: 1h
+
+Start time: 10:00pm
+
+Finish time: 10:40pm
+
+Actual time needed to complete: 40 min
 
 
 ## Credit and Collaborations
