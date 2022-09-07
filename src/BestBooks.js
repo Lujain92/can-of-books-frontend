@@ -3,6 +3,7 @@ import Carousel from 'react-bootstrap/Carousel'
 import axios from 'axios';
 import FormModal from './FormModal';
 import UpdateBook from './UpdateBook';
+import { withAuth0 } from '@auth0/auth0-react';
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
@@ -169,4 +170,4 @@ this.setState({
   }
 }
 
-export default BestBooks;
+export default withAuth0(BestBooks);
