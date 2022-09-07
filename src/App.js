@@ -9,14 +9,17 @@ import {
   Routes,
   Route
 } from "react-router-dom";
- import { withAuth0 } from '@auth0/auth0-react';
+ import { withAuth0 } from '@auth0/auth0-react'; //1
+ import Welcome from "./Welcome"
+ 
 
 class App extends React.Component {
   
 
   
   render() {
-    const { isAuthenticated } = this.props.auth0; //????????
+    const { isAuthenticated } = this.props.auth0;
+    // 2????????
 
     return (
       <>
@@ -26,13 +29,14 @@ class App extends React.Component {
           <Routes>
             <Route 
               exact path="/"
-              element={ isAuthenticated && <BestBooks />}
+              element={ isAuthenticated ? <BestBooks /> : < Welcome/>} 
+              // 3
             >
 
             </Route>
             <Route 
               exact path="/profile"
-              element={<Profile />}
+              element={  isAuthenticated && <Profile />}
             >
               
             </Route>
@@ -45,4 +49,4 @@ class App extends React.Component {
   }
 }
 
-export default withAuth0(App);
+export default withAuth0(App); //4

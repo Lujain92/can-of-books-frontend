@@ -3,11 +3,12 @@ import Carousel from 'react-bootstrap/Carousel'
 import axios from 'axios';
 import FormModal from './FormModal';
 import UpdateBook from './UpdateBook';
-import { withAuth0 } from '@auth0/auth0-react';
+import { withAuth0 } from '@auth0/auth0-react'; //1
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+    
       books: [],
       showModal: false,
       showUpdate:false,
@@ -51,6 +52,7 @@ class BestBooks extends React.Component {
         title :event.target.title.value,
         description :event.target.description.value,
         status: event.target.status.value
+       
     }
     //console.log(obj.title)
 
@@ -170,4 +172,4 @@ this.setState({
   }
 }
 
-export default withAuth0(BestBooks);
+export default withAuth0(BestBooks); //2
